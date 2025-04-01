@@ -322,7 +322,8 @@ const Footer = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [formStatus, setFormStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [videoSource, setVideoSource] = useState("/V!.mp4");
+  // Update the videoSource state to point to the correct location
+  const [videoSource, setVideoSource] = useState("/videos/V!.mp4");
   const [aboutContent, setAboutContent] = useState({
     bio: "I'm Valaboju Praveen Chary, a passionate web developer with a keen eye for creating beautiful, functional digital experiences. With over 5 years of experience in web development, I specialize in building modern, responsive websites and applications.",
     approach: "My approach combines technical expertise with creative problem-solving to deliver solutions that not only meet but exceed client expectations. I believe in clean code, user-centered design, and continuous learning.",
