@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Projects from './pages/Projects';
 import About from './pages/About';
 import Home from './pages/Home';
+import Admin from './components/Admin';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
@@ -103,25 +104,30 @@ function App() {
           
           <ThemeToggle toggleTheme={toggleTheme} currentTheme={theme} toggleParticles={toggleParticles} />
           
-          <Navbar />
-          
-          <AnimatePresence mode="wait">
-            <ContentContainer
-              key={window.location.pathname}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={PageTransition}
-            >
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/projects" element={<Projects />} />
-                <Route path="/about" element={<About />} />
-              </Routes>
-            </ContentContainer>
-          </AnimatePresence>
-          
-          <Footer />
+          <Routes>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="*" element={
+              <>
+                <Navbar />
+                <AnimatePresence mode="wait">
+                  <ContentContainer
+                    key={window.location.pathname}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={PageTransition}
+                  >
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/projects" element={<Projects />} />
+                      <Route path="/about" element={<About />} />
+                    </Routes>
+                  </ContentContainer>
+                </AnimatePresence>
+                <Footer />
+              </>
+            } />
+          </Routes>
         </AppContainer>
       </Router>
     </ThemeProvider>

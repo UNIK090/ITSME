@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon, faParticles, faSnowflake } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon, faSnowflake } from '@fortawesome/free-solid-svg-icons';
 
 const ToggleContainer = styled.div`
   position: fixed;

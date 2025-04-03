@@ -26,7 +26,7 @@ const Avatar = styled(motion.div)`
   position: relative;
 `;
 
-const AvatarFace = styled.div`
+const AvatarFace = styled(motion.div)`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -34,6 +34,7 @@ const AvatarFace = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: ${props => props.$blinking ? 'blink 0.5s' : 'none'};
 `;
 
 const AvatarEyes = styled.div`
@@ -44,7 +45,7 @@ const AvatarEyes = styled.div`
 
 const AvatarEye = styled(motion.div)`
   width: 10px;
-  height: ${props => props.blinking ? '1px' : '10px'};
+  height: ${props => props.$blinking ? '1px' : '10px'};
   background-color: white;
   border-radius: 50%;
 `;
@@ -53,7 +54,8 @@ const AvatarMouth = styled(motion.div)`
   width: 20px;
   height: 10px;
   background-color: white;
-  border-radius: ${props => props.speaking ? '5px' : '10px 10px 20px 20px'};
+  border-radius: ${props => props.$speaking ? '5px' : '10px 10px 20px 20px'};
+  animation: ${props => props.$speaking ? 'speak 0.5s infinite alternate' : 'none'};
 `;
 
 const SpeechBubble = styled(motion.div)`
@@ -155,13 +157,13 @@ const InteractiveAvatar = () => {
         animate={{ rotate: isHovered ? [0, -10, 10, -10, 0] : 0 }}
         transition={{ duration: 0.5 }}
       >
-        <AvatarFace>
+        <AvatarFace $blinking={isBlinking}>
           <AvatarEyes>
-            <AvatarEye blinking={isBlinking} />
-            <AvatarEye blinking={isBlinking} />
+            <AvatarEye $blinking={isBlinking} />
+            <AvatarEye $blinking={isBlinking} />
           </AvatarEyes>
           <AvatarMouth 
-            speaking={isSpeaking}
+            $speaking={isSpeaking}
             animate={isSpeaking ? { 
               height: ["10px", "5px", "10px", "5px"],
               width: ["20px", "15px", "20px", "15px"]
