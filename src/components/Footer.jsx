@@ -322,13 +322,13 @@ const Footer = () => {
   const [isMuted, setIsMuted] = useState(true);
   const [formStatus, setFormStatus] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // Update the videoSource state to point to the correct location
   const [videoSource, setVideoSource] = useState("/videos/V!.mp4");
   const [aboutContent, setAboutContent] = useState({
     bio: "I'm Valaboju Praveen Chary, a passionate web developer with a keen eye for creating beautiful, functional digital experiences. With over 5 years of experience in web development, I specialize in building modern, responsive websites and applications.",
     approach: "My approach combines technical expertise with creative problem-solving to deliver solutions that not only meet but exceed client expectations. I believe in clean code, user-centered design, and continuous learning.",
     skills: ["React", "JavaScript", "HTML5/CSS3", "Node.js", "UI/UX Design", "Responsive Design", "Three.js", "Framer Motion"]
   });
+  const [projects, setProjects] = useState([]);
   const formRef = useRef();
   
   // Fetch content from localStorage on component mount
@@ -346,6 +346,16 @@ const Footer = () => {
         setAboutContent(JSON.parse(savedAboutContent));
       } catch (e) {
         console.error("Error parsing about content", e);
+      }
+    }
+    
+    // Load projects
+    const savedProjects = localStorage.getItem('projects');
+    if (savedProjects) {
+      try {
+        setProjects(JSON.parse(savedProjects));
+      } catch (e) {
+        console.error("Error parsing projects", e);
       }
     }
     
@@ -472,6 +482,31 @@ const Footer = () => {
                 <SkillTag key={index}>{skill}</SkillTag>
               ))}
             </SkillsList>
+            
+            {/* Add this projects section */}
+            {projects.length > 0 && (
+              <>
+                <AboutTitle>My Projects</AboutTitle>
+                <div>
+                  {projects.map(project => (
+                    <div key={project.id} style={{marginBottom: '1rem'}}>
+                      <h4 style={{color: '#fff', marginBottom: '0.5rem'}}>{project.title}</h4>
+                      <p style={{color: 'rgba(255, 255, 255, 0.8)', fontSize: '0.9rem'}}>{project.description}</p>
+                      {project.link && (
+                        <a 
+                          href={project.link} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{color: '#ff0066', textDecoration: 'none', fontSize: '0.9rem'}}
+                        >
+                          View Project
+                        </a>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
           </AboutSection>
           
           <ContactForm ref={formRef} onSubmit={handleSubmit}>
@@ -544,3 +579,5 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// Delete everything below this line

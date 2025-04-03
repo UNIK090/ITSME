@@ -2,7 +2,8 @@ import { motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import AskMeAnything from '../components/AskMeAnything';
+// Remove this import line
+// import AskMeAnything from '../components/AskMeAnything';
 import InteractiveAvatar from '../components/InteractiveAvatar';
 
 const HomeContainer = styled.div`
@@ -185,7 +186,8 @@ const Home = () => {
         </MuteButton>
       </HeroSection>
       
-      <AskMeAnything />
+      {/* Remove any usage of AskMeAnything component, like: */}
+      {/* <AskMeAnything /> */}
       
       {/* Remove the AdminLink component */}
       
